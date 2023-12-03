@@ -6,7 +6,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Layout({ children }) {
   const { data: session } = useSession();
   return (
-    <div className="w-screen h-screen dark:bg-gray-900">
+    <div className=" overflow-hidden w-screen h-screen dark:bg-gray-900">
       <NavbarTop user={session.user} />
       <div className="flex">
         <NavbarSide />

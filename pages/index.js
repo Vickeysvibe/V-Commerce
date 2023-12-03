@@ -2,6 +2,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import NavbarTop from "@/components/navbar";
 import NavbarSide from "@/components/navbarSide";
 import Layout from "@/components/layout";
+import HomePage from "./home";
 
 export default function Component() {
   const { data: session } = useSession();
@@ -23,5 +24,5 @@ export default function Component() {
       </>
     );
   }
-  return <Layout></Layout>;
+  return <HomePage />;
 }
