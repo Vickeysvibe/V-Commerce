@@ -10,9 +10,14 @@ export default function NavbarSide() {
   return (
     <div
       className="flex justify-center items-center dark:bg-gray-900 "
-      style={{ height: "740px", width: "8%", overflowY: "none" }}
+      style={{
+        height: "740px",
+        width: "8%",
+        minWidth: "50px",
+        overflowY: "none",
+      }}
     >
-      <div className=" mx-40 h-auto   flex flex-col gap-8 p-5 w-40">
+      <div className=" mx-40 h-auto flex flex-col gap-8 p-5 w-40">
         <Link href={"/"}>
           <div className={pathname === "/" ? active : not}>
             <svg

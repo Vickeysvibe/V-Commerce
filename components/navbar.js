@@ -1,24 +1,32 @@
 import axios from "axios";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function NavbarTop({ user }) {
+  const router = useRouter();
   const [ddv, setDdv] = useState(false);
   const [ttv, setTtv] = useState(false);
   const [but, setBut] = useState(false);
-  const [ress, setRess] = useState("");
+  const [ress, setRess] = useState([]);
   const [likes, setLikes] = useState([]);
+  const { pathname } = router;
+
   let temp = [];
   const removeIt = async (fid) => {
-    await axios.get("/api/cart").then(async (Response) => {
-      const res = await Response.data.filter((res) => {
-        return res.id === fid;
-      });
-      await setRess(res);
-      console.log(res);
-      console.log(ress);
-    });
-    await axios.delete("/api/cart?id=" + ress[0]._id);
+    const response = await axios.get("/api/cart");
+    const filteredRes = response.data.filter((item) => item.id === fid);
+
+    // Use the state updater function to get the latest state
+    setRess((prevRess) => filteredRes);
+
+    console.log(filteredRes);
+    console.log(ress);
+
+    if (filteredRes.length > 0) {
+      await axios.delete("/api/cart?id=" + filteredRes[0]._id);
+      router.push({ pathname });
+    }
   };
   useEffect(() => {
     const fetchData = async () => {
