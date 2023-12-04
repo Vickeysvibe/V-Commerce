@@ -177,7 +177,7 @@ export default function HomePage() {
               src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
               alt="avatar"
             />
-            <div class=" w-full">
+            <div style={{ width: "80%" }}>
               <div
                 style={{ maxWidth: "350px" }}
                 class="  flex items-center justify-between"
@@ -189,10 +189,11 @@ export default function HomePage() {
               </div>
               <p class="text-gray-700">Joined 27 NOV 2004. </p>
               <p class="mt-3 text-gray-700 text-sm">
-                Ahhhh...! at last its done.. the end of phase before success
+                "Rain is just a Cloud that falls apart, I guess I like to know
+                that I'm not the only one who falls apart sometimes"
               </p>
               <div class="mt-4 flex items-center">
-                <div class="flex mr-2 text-gray-700 text-sm mr-3">
+                <div class="flex text-gray-700 text-sm mr-3">
                   <svg
                     fill="none"
                     viewBox="0 0 24 24"
@@ -208,7 +209,7 @@ export default function HomePage() {
                   </svg>
                   <span>12</span>
                 </div>
-                <div class="flex mr-2 text-gray-700 text-sm mr-8">
+                <div class="flex text-gray-700 text-sm mr-8">
                   <svg
                     fill="none"
                     viewBox="0 0 24 24"
@@ -224,7 +225,7 @@ export default function HomePage() {
                   </svg>
                   <span>8</span>
                 </div>
-                <div class="flex mr-2 text-gray-700 text-sm mr-4">
+                <div class="flex text-gray-700 text-sm mr-4">
                   <svg
                     fill="none"
                     viewBox="0 0 24 24"
