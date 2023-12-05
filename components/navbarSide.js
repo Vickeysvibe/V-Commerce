@@ -6,7 +6,6 @@ export default function NavbarSide() {
   const not = "p-8 rounded-full bg-orange-200";
   const active = "p-8 rounded-full bg-cyan-900";
   const { pathname } = router;
-  console.log(pathname);
   return (
     <div
       className="flex justify-center items-center dark:bg-gray-900 "
@@ -92,6 +91,20 @@ export default function NavbarSide() {
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+              />
+            </svg>
+          </div>
+        </Link>
+        <Link href={"/orders"}>
+          <div className={pathname.includes("/orders") ? active : not}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M4 18V7.1L2.45 3.75q-.175-.375-.025-.763t.525-.562q.375-.175.763-.037t.562.512L6.2 7.05h11.6l1.925-4.15q.175-.375.563-.525t.762.05q.375.175.525.563t-.025.762L20 7.1V18q0 .825-.587 1.413T18 20H6q-.825 0-1.412-.587T4 18Zm6-5h4q.425 0 .713-.288T15 12q0-.425-.288-.712T14 11h-4q-.425 0-.712.288T9 12q0 .425.288.713T10 13Zm-4 5h12V9.05H6V18Zm0 0V9.05V18Z"
               />
             </svg>
           </div>

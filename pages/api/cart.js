@@ -4,6 +4,7 @@ import { Cart } from "@/models/cart";
 export default async function handle(req, res) {
   const { method } = req;
   await mongooseConnect();
+  console.log(method);
 
   if (method === "POST") {
     console.log(req.body);
@@ -16,9 +17,14 @@ export default async function handle(req, res) {
     res.json(cartDoc);
   }
   if (method === "DELETE") {
-    if (req.query?.id) {
-      await Cart.deleteOne({ _id: req.query.id });
-      res.json(true);
+    try {
+      if (req.query?.id) {
+        console.log("deleting");
+        await Cart.deleteOne({ _id: req.query.id });
+        res.json(true);
+      }
+    } catch {
+      console.log("error");
     }
   }
   if (method === "GET") {
