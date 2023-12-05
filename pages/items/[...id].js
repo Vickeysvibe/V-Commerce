@@ -28,13 +28,13 @@ export default function prodPage() {
     const cart = "cart";
     const data = { id: productInfo._id, user, cart };
     await axios.post("/api/cart", data);
-    alert(productInfo.name + "has been added to cart");
+    alert(productInfo.name + " has been added to cart");
   };
   const addToLikes = async () => {
     const cart = "like";
     const data = { id: productInfo._id, user, cart };
     await axios.post("/api/cart", data);
-    alert(productInfo.name + "has been added to Likes");
+    alert(productInfo.name + " has been added to Likes");
   };
 
   return (

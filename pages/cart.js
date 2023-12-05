@@ -17,7 +17,7 @@ import Link from "next/link";
 export default function Cart() {
   const { data: session } = useSession();
   const [cart, setCart] = useState([]);
-  const [cost, setCost] = useState("");
+  const [cost, setCost] = useState(0);
   const [ress, setRess] = useState([]);
   const router = useRouter();
 
@@ -48,15 +48,13 @@ export default function Cart() {
       await setCart(tempLikes);
       console.log(cart);
       console.log(tempLikes);
-
-      await setCost(cart.reduce((acc, cart) => acc + cart.price, 0));
-      console.log(cost);
     };
 
     fetchData();
   }, []);
   useEffect(() => {
     setCost(cart.reduce((acc, cartItem) => acc + cartItem.price, 0));
+    console.log(cost);
   }, [cart]);
 
   return (
@@ -108,7 +106,7 @@ export default function Cart() {
             <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
               <div class="mb-2 flex justify-between">
                 <p class="text-gray-700">Subtotal</p>
-                <p class="text-gray-700">${cost}</p>
+                <p class="text-gray-700">${cost ? cost : 0}</p>
               </div>
               <div class="flex justify-between">
                 <p class="text-gray-700">Shipping</p>
@@ -118,7 +116,7 @@ export default function Cart() {
               <div class="flex justify-between">
                 <p class="text-lg font-bold">Total</p>
                 <div class="">
-                  <p class="mb-1 text-lg font-bold">${cost + cost ? 49 : 0}</p>
+                  <p class="mb-1 text-lg font-bold">${cost && cost + 49}</p>
                   <p class="text-sm text-gray-700">including GST</p>
                 </div>
               </div>

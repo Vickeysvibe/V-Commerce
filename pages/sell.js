@@ -10,16 +10,19 @@ export default function Sell() {
   const [productrs, setProductrs] = useState([]);
   const temp = [];
   useEffect(() => {
-    axios.get("/api/products").then((Response) => {
-      setProducts(Response.data);
-      products.map((product) => {
-        if (product.mail == session.user.email) {
-          temp.push(product);
-        }
+    axios
+      .get("/api/products")
+      .then((response) => {
+        const allProducts = response.data;
+        const userProducts = allProducts.filter(
+          (product) => product.mail === session.user.email
+        );
+        setProducts(userProducts);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
       });
-    });
-    setProducts(temp);
-  }, []);
+  }, [session.user.email]);
 
   return (
     <Layout>
