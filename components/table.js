@@ -78,7 +78,7 @@ export default function Table({
 
   return (
     <>
-      <div className=" overflow-scroll px-32 py-28">
+      <div style={{ height: "750px" }} className=" overflow-scroll px-32 py-28">
         <h1 className=" text-5xl mb-10">Add a new product</h1>
         <form className="flex flex-col gap-3" onSubmit={createProduct}>
           <label className="text-lg">Name of the product</label>

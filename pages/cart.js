@@ -76,7 +76,7 @@ export default function Cart() {
                       <h2 class="text-2xl font-bold text-gray-900">
                         {cart.name}
                       </h2>
-                      <p class="mt-1 text-xs text-gray-700">3{cart.catagory}</p>
+                      <p class="mt-1 text-xs text-gray-700">{cart.catagory}</p>
                     </div>
                     <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                       <div class="flex items-center space-x-4">
