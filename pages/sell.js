@@ -33,6 +33,12 @@ export default function Sell() {
         >
           Add products
         </Link>
+        <Link
+          href={"/sellerOrders"}
+          className="p-3 ml-5 rounded-lg text-center text-white bg-blue-900"
+        >
+          Seller Orders
+        </Link>
         {products ? (
           <div class="relative overflow-x-auto mt-10 rounded-xl">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

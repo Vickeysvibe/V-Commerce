@@ -8,8 +8,9 @@ export default function SellerOrders() {
   useEffect(() => {
     const fetchData = async () => {
       const orderResponse = await axios.get("/api/order");
+      console.log(orderResponse);
       const orderRes1 = await orderResponse.data.filter(
-        (items) => items.buyer === session.user.email
+        (items) => items.seller === session.user.email
       );
 
       console.log(orderRes1);
@@ -46,10 +47,10 @@ export default function SellerOrders() {
               Product name
             </th>
             <th scope="col" class="px-6 py-3">
-              catagory
+              buyer
             </th>
             <th scope="col" class="px-6 py-3">
-              price
+              address
             </th>
             <th scope="col" class="px-6 py-3">
               options
@@ -57,7 +58,7 @@ export default function SellerOrders() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {order.map((product) => (
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
