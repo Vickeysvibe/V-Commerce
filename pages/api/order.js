@@ -36,4 +36,9 @@ export default async function handle(req, res) {
   if (method === "GET") {
     res.json(await Orders.find());
   }
+  if (method === "PUT") {
+    const { orderStatus, id } = req.body;
+    await Orders.updateOne({ _id: id }, { orderStatus });
+    res.json(true);
+  }
 }

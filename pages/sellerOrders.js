@@ -1,10 +1,12 @@
 import Layout from "@/components/layout";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 export default function SellerOrders() {
   const [order, setOrder] = useState([]);
   const { data: session } = useSession();
+  const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
       const orderResponse = await axios.get("/api/order");
@@ -26,6 +28,9 @@ export default function SellerOrders() {
           );
           if (prod1) {
             prod1.status = order.orderStatus;
+            prod1.orderId = order._id;
+            prod1.buyer = order.buyer;
+            prod1.address = order.phoneNo + " , " + order.address;
             tempLikes.push(prod1);
           }
         })
@@ -38,6 +43,30 @@ export default function SellerOrders() {
 
     fetchData();
   }, []);
+  async function doApprove(id) {
+    console.log("running");
+    const data = { orderStatus: "approved", id: id };
+    await axios.put("/api/order", data);
+    router.push("/");
+  }
+  async function doShip(id) {
+    console.log("running");
+    const data = { orderStatus: "shipped", id: id };
+    await axios.put("/api/order", data);
+    router.push("/");
+  }
+  async function doOut(id) {
+    console.log("running");
+    const data = { orderStatus: "out for delivery", id: id };
+    await axios.put("/api/order", data);
+    router.push("/");
+  }
+  async function doDel(id) {
+    console.log("running");
+    const data = { orderStatus: "delivered", id: id };
+    await axios.put("/api/order", data);
+    router.push("/");
+  }
   return (
     <Layout>
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -66,22 +95,55 @@ export default function SellerOrders() {
               >
                 {product.name}
               </th>
-              <td class="px-6 py-4">{product.catagory}</td>
-              <td class="px-6 py-4">{product.price}</td>
+              <td class="px-6 py-4">{product.buyer}</td>
+              <td class="px-6 py-4">{product.address}</td>
               <td class="px-6 py-4">
                 <div className=" flex gap-3">
-                  <Link
-                    className=" p-3 rounded-lg text-center text-white bg-blue-900"
-                    href={"/products/edit/" + product._id}
-                  >
-                    edit
-                  </Link>
-                  <Link
-                    className="p-3 rounded-lg text-center text-white bg-blue-900 "
-                    href={"/products/delete/" + product._id}
-                  >
-                    delete
-                  </Link>
+                  {product.status === "waiting" ? (
+                    <button
+                      onClick={() => {
+                        doApprove(product.orderId);
+                      }}
+                      className="w-32 p-3 rounded-lg text-center text-white bg-blue-900"
+                    >
+                      approve
+                    </button>
+                  ) : product.status === "approved" ? (
+                    <button
+                      onClick={() => {
+                        {
+                          doShip(product.orderId);
+                        }
+                      }}
+                      className="w-32 p-3 rounded-lg text-center text-white bg-blue-900"
+                    >
+                      Shipped
+                    </button>
+                  ) : product.status === "shipped" ? (
+                    <button
+                      onClick={() => {
+                        {
+                          doOut(product.orderId);
+                        }
+                      }}
+                      className="w-32 p-3 rounded-lg text-center text-white bg-blue-900"
+                    >
+                      out for delivery
+                    </button>
+                  ) : product.status === "out for delivery" ? (
+                    <button
+                      onClick={() => {
+                        {
+                          doDel(product.orderId);
+                        }
+                      }}
+                      className="w-32 p-3 rounded-lg text-center text-white bg-blue-900"
+                    >
+                      delivered
+                    </button>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </td>
             </tr>
