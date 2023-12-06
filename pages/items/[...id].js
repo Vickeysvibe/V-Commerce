@@ -39,9 +39,9 @@ export default function prodPage() {
   if (session) {
     return (
       <Layout>
-        <section class="overflow-hidden bg-white  py-11  font-poppins">
+        <section class=" h-full bg-white  py-11  font-poppins">
           <div
-            class=" px-10 py-4 mx-auto lg:py-8 md:px-6"
+            class="h-full px-10 py-4 mx-auto lg:py-8 md:px-6 overflow-y-scroll"
             style={{ maxWidth: "1200px" }}
           >
             <div class="flex flex-wrap -mx-4">
