@@ -11,7 +11,7 @@ export default function prodPage() {
   console.log(router);
   const { id } = router.query;
   const { data: session } = useSession();
-  const user = session.user.email;
+  const user = session?.user?.email;
   if (!id) {
     return;
   } else {
